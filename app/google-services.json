@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "497797899093",
+    "project_id": "kotlin-ticket",
+    "storage_bucket": "kotlin-ticket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497797899093:android:2c1ceb972151a30d0a85dc",
+        "android_client_info": {
+          "package_name": "com.example.ticket_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs01WhNADFetgCFogZUALbs0jPxlP3Q-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
