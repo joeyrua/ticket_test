@@ -13,6 +13,7 @@ import androidx.core.view.isEmpty
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.regex.Pattern
 
 class Register : AppCompatActivity() {
     private lateinit var re_Email:TextInputLayout
@@ -79,20 +80,29 @@ class Register : AppCompatActivity() {
     }
     private fun useremail_vaild():Boolean{
         val useremail = re_Email.editText?.text.toString()
+        val useremail_pattern = Pattern.compile("[_a-z0-9-]+([.][_a-z0-9-]+)*@[a-z0-9-]+([.][a-z0-9-]+)*\$")
+        val useremail_matcher = useremail_pattern.matcher(useremail)
         if(useremail.isEmpty()){
             re_Email.error="必須輸入此欄位"
             return false
-        }else{
+        }else if (!useremail_matcher.matches()){
+            re_Email.error="輸入格式錯誤"
+            return false
+        }
+        else{
             re_Email.error=null
             return true
         }
     }
     private fun userphone_vaild():Boolean{
         val userphone = re_Phone.editText?.text.toString()
+        val pattern = Pattern.compile("[0]{1}[9]{1}[0-9]{8}")
+        val marcher = pattern.matcher(userphone)
+
         if(userphone.isEmpty()){
             re_Phone.error="必須輸入此欄位"
             return false
-        }else if (userphone.length in 1..9){
+        }else if (userphone.length in 1..9 || !marcher.matches()){
             re_Phone.error="請輸入正確的格式"
             return false
         }
@@ -103,11 +113,13 @@ class Register : AppCompatActivity() {
     }
     private fun userid_vaild():Boolean{
         val userid = re_Id.editText?.text.toString()
+        val pattern_userid = Pattern.compile("[A-Z]{1}[1-2]{1}[0-9]{8}")
+        val matcher_userid = pattern_userid.matcher(userid)
         if(userid.isEmpty()){
             re_Id.error="必須輸入此欄位"
             return false
-        }else if (userid.length in 1..9){
-            re_Id.error="請輸入正確的格式"
+        }else if (userid.length in 1..9 ||!matcher_userid.matches()){
+            re_Id.error="請輸入位元數>9"
             return false
         }
         else{
